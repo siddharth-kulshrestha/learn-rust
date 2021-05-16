@@ -1,0 +1,11 @@
+**/target/*
+programs/functions/funcs
+programs/ifElseAndElif/basics
+programs/looping/loops
+programs/ownership/ownership_example
+programs/ownership/ref_and_borrowing
+programs/stringsAndStr/strings
+programs/tupleAndArrs/arrs
+programs/tupleAndArrs/tup
+programs/user-input--002
+
