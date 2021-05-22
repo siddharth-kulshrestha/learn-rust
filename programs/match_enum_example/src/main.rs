@@ -29,16 +29,55 @@ fn match_example_one(choice: i32) {
     }
 }
 
-//fn match_example_enums(choice: i32) {
-    //match choice {
-        
+fn match_example_enums(coin: Coin) -> u32 {
+    match coin {
+        Coin::Penny => {
+            println!("Coin is: {:?}", coin);
+            1
+        },
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter => 25,
+    }
+}
 
-    //}
+fn match_example_enums_with_value(coin: CoinInStates) -> u32 {
+    match coin {
+        CoinInStates::Penny => {
+            println!("CoinInStates is: {:?}", coin);
+            1
+        },
+        CoinInStates::Nickel => 5,
+        CoinInStates::Dime => 10,
+        CoinInStates::Quarter(state) => {
+            println!("State: {:?}", state);
+            25
+        },
+    }
+}
 
-//}
+#[derive(Debug)]
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter,
+}
 
+#[derive(Debug)]
+enum CoinInStates {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter(UsState),
+}
 
-
+#[derive(Debug)]
+enum UsState {
+    Alaska,
+    Arizona,
+    //etc
+}
 
 
 fn main() {
@@ -54,5 +93,15 @@ fn main() {
     match_example_one(100);
     match_example_one(200);
     match_example_one(1200);
+
+    // Example 2: Match of enums
+    println!("Penny: {}", match_example_enums(Coin::Penny));
+    println!("Nickel: {}", match_example_enums(Coin::Nickel));
+    println!("Dime: {}", match_example_enums(Coin::Dime));
+    println!("Quarter: {}", match_example_enums(Coin::Quarter));
+
+   // Example 3: Encapsulating value inside enum variant
+   println!("Quarter: {}", match_example_enums_with_value(CoinInStates::Quarter(UsState::Alaska)));
+   println!("Quarter: {}", match_example_enums_with_value(CoinInStates::Quarter(UsState::Arizona)));
 
 }
